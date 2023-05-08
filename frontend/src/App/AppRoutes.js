@@ -28,6 +28,7 @@ import UISettingsConnector from 'Settings/UI/UISettingsConnector';
 import BackupsConnector from 'System/Backup/BackupsConnector';
 import LogsTableConnector from 'System/Events/LogsTableConnector';
 import Logs from 'System/Logs/Logs';
+import Parse from 'System/Parse/Parse';
 import Status from 'System/Status/Status';
 import Tasks from 'System/Tasks/Tasks';
 import UpdatesConnector from 'System/Updates/UpdatesConnector';
@@ -259,6 +260,15 @@ function AppRoutes(props) {
       <Route
         path="/system/logs/files"
         component={Logs}
+      />
+
+      {/*
+        Parsing
+      */}
+
+      <Route
+        path="/system/parse"
+        component={Parse}
       />
 
       {/*
