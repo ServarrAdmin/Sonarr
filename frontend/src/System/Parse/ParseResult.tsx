@@ -1,14 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { ParseModel } from 'App/State/ParseAppState';
 import FieldSet from 'Components/FieldSet';
 import EpisodeFormats from 'Episode/EpisodeFormats';
 import SeriesTitleLink from 'Series/SeriesTitleLink';
 import translate from 'Utilities/String/translate';
 import ParseResultItem from './ParseResultItem';
-import parseStateSelector from './parseStateSelector';
 
-function ParseResult() {
-  const { item } = useSelector(parseStateSelector());
+interface ParseResultProps {
+  item: ParseModel;
+}
+
+function ParseResult(props: ParseResultProps) {
+  const { item } = props;
   const {
     customFormats,
     customFormatScore,
@@ -17,6 +20,7 @@ function ParseResult() {
     parsedEpisodeInfo,
     series,
   } = item;
+
   const {
     releaseTitle,
     seriesTitle,
@@ -34,6 +38,8 @@ function ParseResult() {
     airDate,
     quality,
   } = parsedEpisodeInfo;
+
+  const finalLanguages = languages ?? parsedEpisodeInfo.languages;
 
   return (
     <div>
@@ -137,13 +143,22 @@ function ParseResult() {
         />
 
         <ParseResultItem
-          title={translate('Proper')}
+          title={translate('Version')}
           data={quality.revision.version > 1 ? quality.revision.version : '-'}
         />
 
         <ParseResultItem
           title={translate('Real')}
-          data={quality.revision.real ? quality.revision.real : '-'}
+          data={quality.revision.real ? 'True' : '-'}
+        />
+
+        <ParseResultItem
+          title={translate('Proper')}
+          data={
+            quality.revision.version > 1 && !quality.revision.isRepack
+              ? 'True'
+              : '-'
+          }
         />
 
         <ParseResultItem
@@ -152,10 +167,10 @@ function ParseResult() {
         />
       </FieldSet>
 
-      <FieldSet legend={translate('Language')}>
+      <FieldSet legend={translate('Languages')}>
         <ParseResultItem
-          title={translate('Language')}
-          data={languages.map((l) => l.name).join(', ')}
+          title={translate('Languages')}
+          data={finalLanguages.map((l) => l.name).join(', ')}
         />
       </FieldSet>
 

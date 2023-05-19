@@ -23,7 +23,7 @@ function Parse() {
     ({ value }: { value: string }) => {
       const trimmedValue = value.trim();
 
-      setTitle(trimmedValue);
+      setTitle(value);
 
       if (trimmedValue === '') {
         dispatch(clear());
@@ -89,7 +89,7 @@ function Parse() {
         ) : null}
 
         {!isFetching && !error && item.parsedEpisodeInfo ? (
-          <ParseResult />
+          <ParseResult item={item} />
         ) : null}
 
         {title ? null : (

@@ -44,7 +44,7 @@ export interface ParseModel extends ModelBase {
   parsedEpisodeInfo: ParsedEpisodeInfo;
   series?: Series;
   episodes: Episode[];
-  languages: Language[];
+  languages?: Language[];
   customFormats?: CustomFormat[];
   customFormatScore?: number;
 }
