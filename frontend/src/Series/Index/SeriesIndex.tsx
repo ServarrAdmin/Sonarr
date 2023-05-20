@@ -36,6 +36,7 @@ import scrollPositions from 'Store/scrollPositions';
 import createCommandExecutingSelector from 'Store/Selectors/createCommandExecutingSelector';
 import createDimensionsSelector from 'Store/Selectors/createDimensionsSelector';
 import createSeriesClientSideCollectionItemsSelector from 'Store/Selectors/createSeriesClientSideCollectionItemsSelector';
+import ParseToolbarButton from 'System/Parse/ParseToolbarButton';
 import SeriesIndexFilterMenu from './Menus/SeriesIndexFilterMenu';
 import SeriesIndexSortMenu from './Menus/SeriesIndexSortMenu';
 import SeriesIndexViewMenu from './Menus/SeriesIndexViewMenu';
@@ -245,6 +246,9 @@ const SeriesIndex = withScrollPosition((props: SeriesIndexProps) => {
               isSelectMode={isSelectMode}
               overflowComponent={SeriesIndexSelectAllMenuItem}
             />
+
+            <PageToolbarSeparator />
+            <ParseToolbarButton />
           </PageToolbarSection>
 
           <PageToolbarSection
